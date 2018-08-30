@@ -14,6 +14,14 @@ maps = {
     };
 map_tit = {'left MGB', 'right MGB'};
 
+% Convert pitch (around y-axis) rotation from Euler angles to rotation
+% matrices.
+t_d = [0, -45, 0];
+Ry = SpinConv('EA321toDCM', t_d);
+Ry = [Ry; 0 0 0];
+Ry = [Ry(1,:) 0; Ry(2,:) 0; Ry(3,:) 0; Ry(4,:) 1];
+tform = affine3d(Ry);gi
+
 RefVec = [0, 1, 0];  % Reference Vector for angle calculation.
 slice_step = 1;  % Step used to sample slices.
 
